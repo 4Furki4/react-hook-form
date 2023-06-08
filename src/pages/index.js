@@ -31,8 +31,17 @@ export default function Home() {
   }
   return (
     <>
-      <div className='h-screen flex items-center'>
-        <form onSubmit={handleSubmit(onSubmit)} className='w-1/3 mx-auto'>
+
+      <div className='w-1/3 mx-auto h-screen flex flex-col items-center justify-center'>
+        {
+          (user.surname && user.name && user.email) &&
+          <div className="w-full text-center mb-2 p-3 bg-slate-500">
+            <h1 className='text-2xl font-bold'>{user.name} {user.surname}</h1>
+            <h2 className='text-xl font-bold'>{user.email}</h2>
+            <h3 className='text-xl font-bold'> {user.checkbox ? 'Wants to be subscriber' : 'Doesn\'t want to be a subscriber'}</h3>
+          </div>
+        }
+        <form onSubmit={handleSubmit(onSubmit)} className='w-full mx-auto'>
           <div className='mb-2 '>
             <input
               name='name'
@@ -78,14 +87,7 @@ export default function Home() {
           />
         </form>
       </div>
-      {
-        (user.checkbox && user.surname && user.name && user.email) &&
-        <div>
-          <h1 className='text-2xl font-bold'>{user.name} {user.surname}</h1>
-          <h2 className='text-xl font-bold'>{user.email}</h2>
-          <h3 className='text-xl font-bold'>{user.checkbox ? 'Yes' : 'No'}</h3>
-        </div>
-      }
+
     </>
   )
 }
